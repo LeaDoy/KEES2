@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  kafka-ocp-provisioner:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: kafka-ocp-provisioner
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: "maven"
+      - name: Package
+        run: mvn -B package -DskipTests
