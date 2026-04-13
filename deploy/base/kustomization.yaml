@@ -1,0 +1,10 @@
+# Phase 1 aggregate — per-WO kustomizations set their own namespace where needed.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - wo-01-env-setup
+  - wo-06-mds-identity
+  - wo-10-cert-manager
+  - wo-11-external-secrets
+  - wo-14-logging

@@ -1,0 +1,11 @@
+# WO-1 — REQ-KES-004 baseline: default deny ingress; extend for Routes + monitoring NS.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: confluent-default-deny-ingress
+  namespace: confluent
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+  ingress: []

@@ -1,0 +1,34 @@
+{
+  "phase": 1,
+  "repository": "https://github.com/LeaDoy/KEES2",
+  "work_orders": [
+    {
+      "title": "Implement Kubernetes Environment Setup Pipeline",
+      "paths": ["deploy/base/wo-01-env-setup", "scripts/env-setup-pipeline.sh"]
+    },
+    {
+      "title": "Author Master Cluster CRD Manifests and GitOps Repository Structure",
+      "paths": ["deploy/master-cluster", "gitops/argocd"]
+    },
+    {
+      "title": "Implement MDS OAuth2/OIDC Federation and Active Directory Group Sync",
+      "paths": ["deploy/base/wo-06-mds-identity"]
+    },
+    {
+      "title": "Implement Service Account Provisioning and Decommissioning Pipeline",
+      "paths": ["service-account-provisioner"]
+    },
+    {
+      "title": "Implement cert-manager Integration and TLS Certificate CRDs",
+      "paths": ["deploy/base/wo-10-cert-manager"]
+    },
+    {
+      "title": "Implement External Secrets Operator Integration and Secret Rotation Pipeline",
+      "paths": ["deploy/base/wo-11-external-secrets", "secret-rotation-job"]
+    },
+    {
+      "title": "Implement Log Aggregation DaemonSet and Splunk Forwarding Configuration",
+      "paths": ["deploy/base/wo-14-logging"]
+    }
+  ]
+}

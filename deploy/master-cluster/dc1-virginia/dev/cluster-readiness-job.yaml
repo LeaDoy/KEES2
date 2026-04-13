@@ -1,0 +1,22 @@
+# WO-2 — Replace container image/command with real health checks (broker REST, SR, Connect, etc.).
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cluster-readiness-check
+  namespace: confluent
+spec:
+  ttlSecondsAfterFinished: 86400
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: svc-pipeline-runner
+      containers:
+        - name: readiness
+          image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "WO-2 readiness stub: wire kubectl/curl checks against CFK CR status"
+              exit 0

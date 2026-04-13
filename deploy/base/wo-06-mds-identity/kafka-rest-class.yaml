@@ -1,0 +1,13 @@
+# WO-6 — MDS bearer token / REST class (CFK). Wire Kafka.configOverrides to OIDC + LDAP per blueprint.
+# Replace secret refs with ESO-managed Secret names after WO-11.
+apiVersion: platform.confluent.io/v1beta1
+kind: KafkaRestClass
+metadata:
+  name: mds-oidc
+  namespace: confluent
+spec:
+  kafkaRest:
+    authentication:
+      type: bearer
+      bearer:
+        secretRef: mds-oidc-client

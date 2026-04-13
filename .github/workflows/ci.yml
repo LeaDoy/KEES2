@@ -9,11 +9,62 @@ permissions:
   contents: read
 
 jobs:
+  kustomize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: imranismail/setup-kustomize@v2
+      - name: Build deploy/base
+        run: kustomize build deploy/base > /dev/null
+      - name: Build master-cluster overlays
+        run: |
+          set -e
+          for d in \
+            deploy/master-cluster/dc1-virginia/dev \
+            deploy/master-cluster/dc1-virginia/staging \
+            deploy/master-cluster/dc1-virginia/prod \
+            deploy/master-cluster/dc2-texas/dev \
+            deploy/master-cluster/dc2-texas/staging \
+            deploy/master-cluster/dc2-texas/prod; do
+            echo "kustomize build $d"
+            kustomize build "$d" > /dev/null
+          done
+
   kafka-ocp-provisioner:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: kafka-ocp-provisioner
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: "maven"
+      - name: Package
+        run: mvn -B package -DskipTests
+
+  service-account-provisioner:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: service-account-provisioner
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: "maven"
+      - name: Package
+        run: mvn -B package -DskipTests
+
+  secret-rotation-job:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: secret-rotation-job
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4

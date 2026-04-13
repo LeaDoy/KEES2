@@ -1,0 +1,18 @@
+# WO-10 — TLS for Kafka listeners; add dnsNames for Routes + internal svc. JKS via keystores when wired in CFK.
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-kafka
+  namespace: confluent
+spec:
+  secretName: tls-kafka
+  issuerRef:
+    name: wf-pki-issuer
+    kind: ClusterIssuer
+  duration: 8760h
+  renewBefore: 720h
+  commonName: kafka.confluent.svc.cluster.local
+  dnsNames:
+    - kafka.confluent.svc.cluster.local
+    - kafka.confluent.svc
+    - REPLACE_ROUTE_DNS.kafka.example.com

@@ -1,0 +1,9 @@
+# WO-1 — REQ-KES-002: replace provisioner/parameters with Wells Fargo enterprise storage standard.
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: kafka-data-sc
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete
+# WF: bind to approved ODF/NetApp/etc. provisioner in each DC

@@ -1,0 +1,37 @@
+# WO-14 — Apply to openshift-logging (not part of default kustomize build if CRD missing).
+# kubectl apply -f clusterlogforwarder.openshift.yaml
+apiVersion: logging.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  outputs:
+    - name: splunk-ops
+      type: splunk
+      splunk:
+        hecToken:
+          key: token
+          secretName: splunk-hec-token
+        index: kees2-ops
+        url: https://REPLACE_SPLUNK_HEC_OPS
+    - name: splunk-audit
+      type: splunk
+      splunk:
+        hecToken:
+          key: token
+          secretName: splunk-hec-audit-token
+        index: kees2-audit
+        url: https://REPLACE_SPLUNK_HEC_AUDIT
+  pipelines:
+    - name: operational-logs
+      inputRefs:
+        - application
+      outputRefs:
+        - splunk-ops
+      parse: json
+    - name: audit-logs
+      inputRefs:
+        - audit
+      outputRefs:
+        - splunk-audit

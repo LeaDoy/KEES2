@@ -1,0 +1,27 @@
+# WO-1 — REQ-KES-005: TCP probe to opposite DC broker/controller (9071). Set OPPOSITE_DC_HOST per cluster.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kees2-vpn-readiness-probe
+  namespace: confluent
+spec:
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: svc-pipeline-runner
+      containers:
+        - name: probe
+          image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+          command:
+            - /bin/bash
+            - -c
+            - |
+              set -euo pipefail
+              : "${OPPOSITE_DC_HOST:?set OPPOSITE_DC_HOST}"
+              echo "Probing ${OPPOSITE_DC_HOST}:9071"
+              timeout 5 bash -c "until echo > /dev/tcp/${OPPOSITE_DC_HOST}/9071; do sleep 1; done"
+              echo "VPN/TCP probe OK"
+          env:
+            - name: OPPOSITE_DC_HOST
+              value: "REPLACE_WITH_DC_PEER_HOST"

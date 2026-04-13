@@ -1,0 +1,8 @@
+# WO-2 — GitOps overlay: DC1 Virginia / prod
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../../base
+  - cluster-readiness-job.yaml
+  - cfk-kafka-stub.yaml

@@ -1,0 +1,8 @@
+# WO-1 — REQ-KES-001 namespace for Confluent platform (DC1/DC2 apply same manifest per cluster).
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: confluent
+  labels:
+    platform.kees2.io/managed: "true"
+    platform.kees2.io/type: confluent-platform

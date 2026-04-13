@@ -1,0 +1,8 @@
+# WO-1 — REQ-KES-002 general Confluent component volumes.
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: confluent-sc
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete

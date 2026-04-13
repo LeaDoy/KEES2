@@ -1,0 +1,21 @@
+# WO-2 — Point spec.destination to the correct cluster API; install OpenShift GitOps / Argo CD first.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kees2-master-dc1-virginia-dev
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/LeaDoy/KEES2.git
+    targetRevision: main
+    path: deploy/master-cluster/dc1-virginia/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: confluent
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

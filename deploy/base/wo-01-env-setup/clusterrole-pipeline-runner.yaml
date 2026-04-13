@@ -1,0 +1,9 @@
+# WO-1 — GitOps / pipeline runner; tighten per CI system.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kees2-pipeline-runner
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["get", "list", "watch", "create", "update", "patch"]

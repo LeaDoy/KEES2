@@ -1,0 +1,40 @@
+---
+apiVersion: platform.confluent.io/v1beta2
+kind: KRaftController
+metadata:
+  name: kraft
+  namespace: confluent
+spec:
+  replicas: 3
+  podTemplate:
+    podMetadata:
+      labels:
+        platform.kees2.io/managed: "true"
+        platform.kees2.io/environment: prod
+        platform.kees2.io/datacenter: dc2-texas
+  image:
+    application: confluentinc/cp-server:7.6.0
+  listeners:
+    internal:
+      tls:
+        enabled: true
+---
+apiVersion: platform.confluent.io/v1beta2
+kind: Kafka
+metadata:
+  name: kafka
+  namespace: confluent
+spec:
+  replicas: 3
+  image:
+    application: confluentinc/cp-server:7.6.0
+  podTemplate:
+    podMetadata:
+      labels:
+        platform.kees2.io/managed: "true"
+        platform.kees2.io/environment: prod
+        platform.kees2.io/datacenter: dc2-texas
+  listeners:
+    internal:
+      tls:
+        enabled: true

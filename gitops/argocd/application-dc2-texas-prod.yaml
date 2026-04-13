@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kees2-master-dc2-texas-prod
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/LeaDoy/KEES2.git
+    targetRevision: main
+    path: deploy/master-cluster/dc2-texas/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: confluent
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

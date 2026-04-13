@@ -1,0 +1,21 @@
+# WO-14 — Log agent health (adapt metric names to your collector: Vector/Fluentd).
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kees2-log-agent-health
+  namespace: openshift-monitoring
+spec:
+  groups:
+    - name: kees2-logging
+      rules:
+        - alert: LogAgentDegraded
+          expr: |
+            (
+              sum(rate(vector_component_errors_total[5m])) by (pod)
+              / sum(rate(vector_component_received_events_total[5m])) by (pod)
+            ) > 0.01
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Log forwarder error rate high or agent missing (tune expr for your stack)"
