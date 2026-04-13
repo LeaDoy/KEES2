@@ -1,6 +1,6 @@
 # KEES2
 
-Wells Fargo KEES 2.o
+Confluent Platform: Kafka Enterprise Event Streams 2nd edittion
 
 ## Phase 1 (work orders)
 
