@@ -1,0 +1,21 @@
+# WO-22 — ClusterLinkSmokeTest (replace image; wire source/dest bootstrap env).
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: clusterlink-smoke-test
+  namespace: confluent
+spec:
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: smoke
+          image: REPLACE_IMAGE/kees2-clusterlink-smoke-test:1.0.0
+          env:
+            - name: NEIGHBORHOOD_NAME
+              value: example-lob
+            - name: SOURCE_BOOTSTRAP
+              value: REPLACE_SOURCE
+            - name: DEST_BOOTSTRAP
+              value: REPLACE_DEST

@@ -1,0 +1,25 @@
+# WO-3 — KRaftQuorumHealthCheck: polls KRaftController until quorum ready (replace image after building kraft-quorum-health-check).
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kraft-quorum-health-check
+spec:
+  ttlSecondsAfterFinished: 3600
+  backoffLimit: 0
+  activeDeadlineSeconds: 660
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: svc-pipeline-runner
+      containers:
+        - name: check
+          image: REPLACE_IMAGE/kees2-kraft-quorum-health-check:1.0.0
+          args:
+            - --namespace
+            - confluent
+            - --controller-name
+            - kraft
+            - --poll-interval-seconds
+            - "15"
+            - --timeout-seconds
+            - "600"

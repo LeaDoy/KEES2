@@ -1,0 +1,30 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kees2-neighborhood-link-lag
+  namespace: openshift-monitoring
+spec:
+  groups:
+    - name: kees2-clusterlink
+      rules:
+        - alert: NeighborhoodLinkLagTier1Critical
+          expr: kafka_server_fetcherlagmetrics_consumerlag{slo_tier="tier1",namespace=~".*-dc[12]"} > 10000
+          for: 3m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Tier1 link lag critical {{ $labels.namespace }} {{ $labels.link_name }}"
+        - alert: NeighborhoodLinkLagTier2Warning
+          expr: kafka_server_fetcherlagmetrics_consumerlag{slo_tier="tier2",namespace=~".*-dc[12]"} > 50000
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Tier2 link lag warning"
+        - alert: NeighborhoodLinkLagTier3Warning
+          expr: kafka_server_fetcherlagmetrics_consumerlag{slo_tier="tier3",namespace=~".*-dc[12]"} > 200000
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Tier3 link lag warning"

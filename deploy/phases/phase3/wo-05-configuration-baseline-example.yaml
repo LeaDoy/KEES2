@@ -1,0 +1,5 @@
+# WO-5 — Example Git baseline for drift comparison (extend per cluster).
+clusterId: master-dc1
+brokerConfigs:
+  min.insync.replicas: "2"
+  default.replication.factor: "3"

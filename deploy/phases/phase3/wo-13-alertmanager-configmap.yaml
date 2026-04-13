@@ -1,0 +1,26 @@
+# WO-13 — Stub routes; mount into Alertmanager via your operator / secret workflow.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kees2-alertmanager-stub
+  namespace: confluent
+data:
+  alertmanager.yml: |
+    route:
+      receiver: default
+      routes:
+        - matchers:
+            - severity="critical"
+          receiver: wf-oncall
+        - matchers:
+            - severity="warning"
+          receiver: platform-slack
+    receivers:
+      - name: default
+      - name: wf-oncall
+        webhook_configs:
+          - url: 'https://REPLACE_WF_ONCALL_WEBHOOK'
+      - name: platform-slack
+        slack_configs:
+          - api_url: 'https://REPLACE_SLACK_WEBHOOK'
+            channel: '#kees2-platform'

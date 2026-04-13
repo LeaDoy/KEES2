@@ -5,3 +5,7 @@
 - **`../gitops/argocd/`** — Example `Application` objects pointing at this repo; set `spec.destination.server` per cluster.
 
 Apply one overlay per OpenShift cluster to avoid duplicate cluster-scoped names. Install CFK, cert-manager, External Secrets, and OpenShift Logging CRDs before syncing. Tune `deploy/base/wo-14-logging/clusterlogforwarder.openshift.yaml` and Splunk HEC secrets for your environment.
+
+## Phases 2–5 (supplemental)
+
+See [`phases/README.md`](phases/README.md), `deploy/neighborhoods/` (example Neighborhood), `deploy/platform-registry/`, `deploy/governance/`, and `work-orders/phase{2,3,4,5}-snapshot.json`.

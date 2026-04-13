@@ -1,0 +1,21 @@
+# WO-16 — Weekly SLO compliance report (replace image; set PROMETHEUS_URL).
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kees2-slo-compliance-report
+  namespace: confluent
+spec:
+  schedule: "0 6 * * 1"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 86400
+      template:
+        spec:
+          restartPolicy: Never
+          serviceAccountName: svc-pipeline-runner
+          containers:
+            - name: report
+              image: REPLACE_IMAGE/kees2-slo-compliance-report:1.0.0
+              env:
+                - name: PROMETHEUS_URL
+                  value: https://REPLACE_PROMetheus

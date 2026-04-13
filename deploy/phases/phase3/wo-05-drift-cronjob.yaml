@@ -1,0 +1,28 @@
+# WO-5 — DriftDetectionJob (replace image).
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kees2-drift-detection
+  namespace: confluent
+spec:
+  schedule: "0 */6 * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 7200
+      template:
+        spec:
+          restartPolicy: Never
+          serviceAccountName: svc-pipeline-runner
+          containers:
+            - name: drift
+              image: REPLACE_IMAGE/kees2-drift-detection-job:1.0.0
+              args:
+                - --baseline-dir
+                - /config/baseline
+              volumeMounts:
+                - name: baseline
+                  mountPath: /config/baseline
+          volumes:
+            - name: baseline
+              configMap:
+                name: kees2-drift-baseline

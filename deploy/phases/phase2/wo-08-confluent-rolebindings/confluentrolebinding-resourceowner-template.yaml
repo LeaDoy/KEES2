@@ -1,0 +1,12 @@
+# WO-8 — Per-Neighborhood: duplicate with name scoped to neighborhood Owner group mapping.
+apiVersion: platform.confluent.io/v1beta2
+kind: ConfluentRolebinding
+metadata:
+  name: kees2-resourceowner-template
+spec:
+  role: ResourceOwner
+  principal:
+    type: user
+    name: REPLACE_NEIGHBORHOOD_OWNER_USER
+  kafkaRestClassRef:
+    name: mds-oidc

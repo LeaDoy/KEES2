@@ -1,0 +1,8 @@
+{
+  "phase": 5,
+  "work_orders": [
+    {"number": 23, "title": "Implement Kafka Client Bundle Provisioning Service", "paths": ["client-bundle-provisioner"]},
+    {"number": 24, "title": "Implement Connector Deployment Workflow and Schema Registration Service", "paths": ["connector-workflow", "deploy/governance/connector-allowlist.yaml"]},
+    {"number": 25, "title": "Implement Upgrade and Patch Management Pipeline", "paths": ["deploy/phases/phase5", "upgrade-compatibility-check"]}
+  ]
+}

@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: kees2-schemaregistry-jmx
+  labels:
+    release: prometheus
+spec:
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      confluent.org/type: schemaregistry
+  podMetricsEndpoints:
+    - port: prometheus
+      path: /metrics
+      interval: 30s
+      relabelings:
+        - targetLabel: cluster
+          replacement: schemaregistry
+        - targetLabel: dataCenter
+          replacement: REPLACE_DC_LABEL

@@ -1,0 +1,20 @@
+{
+  "title": "Consumer Lag and Cluster Linking",
+  "uid": "kees2-lag-link",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Consumer lag",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "kafka_consumergroup_lag"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Link replication lag (stub metric)",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "targets": [{"expr": "kafka_server_fetcherlagmetrics_consumerlag"}]
+    }
+  ]
+}

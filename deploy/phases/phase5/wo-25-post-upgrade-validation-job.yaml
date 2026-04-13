@@ -1,0 +1,21 @@
+# WO-25 — Post-upgrade validation suite stub.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: post-upgrade-validation
+  namespace: confluent
+spec:
+  ttlSecondsAfterFinished: 86400
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: svc-pipeline-runner
+      containers:
+        - name: validate
+          image: registry.access.redhat.com/ubi9/ubi-minimal:9.5
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "WO-25: broker readiness, URP, ClusterLink, SLO — replace with real checks"
+              exit 0

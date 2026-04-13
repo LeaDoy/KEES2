@@ -1,0 +1,26 @@
+# WO-21 — ClusterLink template (replace endpoints, secrets, cluster domain).
+apiVersion: platform.confluent.io/v1beta2
+kind: ClusterLink
+metadata:
+  name: example-lob-link-dc1-to-dc2
+spec:
+  sourceKafkaCluster:
+    bootstrapEndpoint: kafka.example-lob-dc1.svc.cluster.local:9071
+    authentication:
+      type: mtls
+      tls:
+        secretRef: tls-clusterlink-example-lob
+  destinationKafkaCluster:
+    bootstrapEndpoint: kafka.example-lob-dc2.apps.REPLACE_OCP_DC2_DOMAIN:443
+    authentication:
+      type: mtls
+      tls:
+        secretRef: tls-clusterlink-example-lob
+  mirrorStartupMode: link
+  configs:
+    consumer.offset.sync.enable: "true"
+    consumer.offset.sync.ms: "30000"
+    acl.sync.enable: "true"
+  topicFilters:
+    - type: allowList
+      pattern: "^(?!_slo-probe-).*$"

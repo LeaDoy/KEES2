@@ -12,7 +12,7 @@ spec:
       serviceAccountName: svc-pipeline-runner
       containers:
         - name: readiness
-          image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+          image: registry.access.redhat.com/ubi9/ubi-minimal:9.5
           command:
             - /bin/sh
             - -c

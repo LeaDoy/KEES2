@@ -1,0 +1,11 @@
+apiVersion: platform.confluent.io/v1beta2
+kind: ConfluentRolebinding
+metadata:
+  name: kees2-developer-read-template
+spec:
+  role: DeveloperRead
+  principal:
+    type: serviceAccount
+    name: REPLACE_CONSUMER_SA
+  kafkaRestClassRef:
+    name: mds-oidc

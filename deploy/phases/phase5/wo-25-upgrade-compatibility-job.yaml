@@ -1,0 +1,19 @@
+# WO-25 — Pre-upgrade gate (replace image; pass versions).
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: upgrade-compatibility-check
+  namespace: confluent
+spec:
+  ttlSecondsAfterFinished: 86400
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: check
+          image: REPLACE_IMAGE/kees2-upgrade-compatibility-check:1.0.0
+          args:
+            - --current-version
+            - "7.6.0"
+            - --target-version
+            - "7.6.1"

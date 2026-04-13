@@ -1,0 +1,23 @@
+# WO-12 — Match CFK Kafka pod labels in your cluster (adjust selector).
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: kees2-kafka-jmx
+  labels:
+    release: prometheus
+spec:
+  namespaceSelector:
+    any: true
+  selector:
+    matchExpressions:
+      - key: confluent.org/type
+        operator: Exists
+  podMetricsEndpoints:
+    - port: prometheus
+      path: /metrics
+      interval: 30s
+      relabelings:
+        - targetLabel: cluster
+          replacement: kafka
+        - targetLabel: dataCenter
+          replacement: REPLACE_DC_LABEL

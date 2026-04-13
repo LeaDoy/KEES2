@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - confluentrolebinding-systemadmin-sre.yaml
+  - confluentrolebinding-clusteradmin-pipeline.yaml
+  - confluentrolebinding-resourceowner-template.yaml
+  - confluentrolebinding-developer-write-template.yaml
+  - confluentrolebinding-developer-read-template.yaml
+  - confluentrolebinding-securityadmin.yaml

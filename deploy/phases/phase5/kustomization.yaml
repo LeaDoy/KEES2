@@ -1,0 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - wo-25-upgrade-compatibility-job.yaml
+  - wo-25-post-upgrade-validation-job.yaml

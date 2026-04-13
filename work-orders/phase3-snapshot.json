@@ -1,0 +1,9 @@
+{
+  "phase": 3,
+  "work_orders": [
+    {"number": 5, "title": "Implement Drift Detection Job and Auto-Remediation Framework", "paths": ["deploy/phases/phase3/wo-05-drift-cronjob.yaml", "deploy/phases/phase3/wo-05-drift-remediation-policy.yaml", "deploy/phases/phase3/wo-05-configuration-baseline-example.yaml", "drift-detection-job"]},
+    {"number": 13, "title": "Implement Grafana Dashboards and Prometheus Alert Rules", "paths": ["grafana/dashboards", "deploy/phases/phase3/wo-13-prometheus-rules.yaml", "deploy/phases/phase3/wo-13-alertmanager-configmap.yaml"]},
+    {"number": 15, "title": "Implement SLO Synthetic Message Loop CronJob", "paths": ["deploy/phases/phase3/wo-15-slo-synthetic-cronjob.yaml", "slo-synthetic-loop"]},
+    {"number": 16, "title": "Implement SLO Compliance Reporting Pipeline", "paths": ["deploy/phases/phase3/wo-16-slo-report-cronjob.yaml", "deploy/phases/phase3/wo-16-slo-prometheus-rules.yaml", "slo-compliance-report"]}
+  ]
+}

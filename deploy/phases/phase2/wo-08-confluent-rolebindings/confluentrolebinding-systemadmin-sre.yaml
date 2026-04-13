@@ -1,0 +1,12 @@
+# WO-8 — Template: bind platform SRE AD-mapped principal; adjust principal and kafkaRestClassRef.
+apiVersion: platform.confluent.io/v1beta2
+kind: ConfluentRolebinding
+metadata:
+  name: kees2-systemadmin-sre
+spec:
+  role: SystemAdmin
+  principal:
+    type: user
+    name: REPLACE_KAFKA_USER_SRE
+  kafkaRestClassRef:
+    name: mds-oidc

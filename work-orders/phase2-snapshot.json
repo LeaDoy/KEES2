@@ -1,0 +1,10 @@
+{
+  "phase": 2,
+  "work_orders": [
+    {"number": 3, "title": "Implement Confluent Platform Deployment Pipeline", "paths": [".github/workflows/confluent-deploy-pipeline.yml", "deploy/phases/phase2/wo-03-kraft-quorum-health-job.yaml", "kraft-quorum-health-check", "scripts/validate-helm-no-latest.sh"]},
+    {"number": 4, "title": "Implement Dynamic Configuration Generation Service", "paths": ["configuration-generator"]},
+    {"number": 8, "title": "Implement RBAC Role Binding CRDs and ACL Provisioning Service", "paths": ["deploy/phases/phase2/wo-08-confluent-rolebindings", "acl-provisioning-service", "deploy/governance/cross-neighborhood-access-exceptions.yaml"]},
+    {"number": 9, "title": "Implement Topic Creation Guardrail Service", "paths": ["topic-provisioning-service"]},
+    {"number": 12, "title": "Implement Prometheus JMX Exporter Configuration and PodMonitor Resources", "paths": ["deploy/phases/phase2/wo-12-podmonitors"]}
+  ]
+}

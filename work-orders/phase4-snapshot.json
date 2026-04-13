@@ -1,0 +1,12 @@
+{
+  "phase": 4,
+  "work_orders": [
+    {"number": 17, "title": "Implement Neighborhood Onboarding Gate and Approved Client Specifications Validation", "paths": ["deploy/neighborhoods/example-lob/onboarding/approved-client-specs.yaml", "deploy/platform-registry/neighborhood-mapping.yaml", "neighborhood-onboarding-validator"]},
+    {"number": 18, "title": "Implement Neighborhood Provisioning Pipeline", "paths": ["neighborhood-provisioner"]},
+    {"number": 19, "title": "Implement Neighborhood Namespace Isolation, ResourceQuotas, and NetworkPolicies", "paths": ["deploy/neighborhoods/example-lob/dc1-virginia/dev/resourcequota-medium.yaml", "deploy/neighborhoods/example-lob/dc1-virginia/dev/networkpolicies.yaml"]},
+    {"number": 20, "title": "Implement Confluent-Level Client Quotas and Partition Limit Enforcement", "paths": ["neighborhood-quota-service", "deploy/neighborhoods/example-lob/dc1-virginia/dev/neighborhood-params.yaml"]},
+    {"number": 21, "title": "Implement Neighborhood Cross-DC ClusterLink CRDs and Topic Allowlist Management", "paths": ["deploy/neighborhoods/example-lob/dc1-virginia/dev/clusterlink-dc1-to-dc2.yaml"]},
+    {"number": 22, "title": "Implement Cross-DC Replication Lag Monitoring and Link Smoke Test", "paths": ["deploy/phases/phase4/wo-22-link-lag-prometheus-rules.yaml", "deploy/phases/phase4/wo-22-clusterlink-smoke-job.yaml", "clusterlink-smoke-test"]},
+    {"number": 26, "title": "Implement Neighborhood Decommissioning Pipeline", "paths": ["neighborhood-decommission"]}
+  ]
+}

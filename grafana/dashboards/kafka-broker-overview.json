@@ -1,0 +1,20 @@
+{
+  "title": "Kafka Broker Overview",
+  "uid": "kees2-kafka-broker",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Broker pods ready",
+      "gridPos": {"h": 4, "w": 8, "x": 0, "y": 0},
+      "targets": [{"expr": "sum(kube_pod_status_ready{namespace=~\"confluent|.*-dc1|.*-dc2\"})"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Bytes in/out (stub)",
+      "gridPos": {"h": 8, "w": 16, "x": 8, "y": 0},
+      "targets": [{"expr": "rate(kafka_server_brokertopicmetrics_bytesin_total[5m])"}]
+    }
+  ]
+}

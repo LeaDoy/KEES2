@@ -1,0 +1,23 @@
+# WO-17 — Approved Client Specifications (template). status must be APPROVED for provisioning gate.
+neighborhoodName: example-lob
+dataCenter: dc1-virginia
+sizingProfile: MEDIUM
+lobName: ExampleLOB
+lobOwner: owner@example.com
+platformOwnerApproval:
+  approvedBy: platform.owner@example.com
+  approvedAt: "2026-01-15T10:00:00Z"
+neighborhoodOwnerApproval:
+  approvedBy: neighborhood.owner@example.com
+  approvedAt: "2026-01-15T11:00:00Z"
+status: APPROVED
+capacityAssessment:
+  peakProducerThroughputMBps: 50
+  peakConsumerThroughputMBps: 80
+  estimatedPartitionCount: 400
+  storageGrowthGbPerMonth: 200
+  consumerGroupCount: 12
+  applicationCount: 5
+migrationSource: GREENFIELD
+currentEstateDocumented: true
+impactAnalysisComplete: true

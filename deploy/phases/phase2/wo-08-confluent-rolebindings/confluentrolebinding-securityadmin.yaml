@@ -1,0 +1,11 @@
+apiVersion: platform.confluent.io/v1beta2
+kind: ConfluentRolebinding
+metadata:
+  name: kees2-securityadmin-iam
+spec:
+  role: SecurityAdmin
+  principal:
+    type: user
+    name: REPLACE_IAM_ADMIN_USER
+  kafkaRestClassRef:
+    name: mds-oidc

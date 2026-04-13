@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.kees2</groupId>
+  <artifactId>kees2-reactor</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>KEES2 reactor</name>
+  <description>Build all Java modules (Phases 1–5).</description>
+  <modules>
+    <module>kafka-ocp-provisioner</module>
+    <module>service-account-provisioner</module>
+    <module>secret-rotation-job</module>
+    <module>configuration-generator</module>
+    <module>kraft-quorum-health-check</module>
+    <module>acl-provisioning-service</module>
+    <module>topic-provisioning-service</module>
+    <module>drift-detection-job</module>
+    <module>neighborhood-onboarding-validator</module>
+    <module>neighborhood-provisioner</module>
+    <module>neighborhood-decommission</module>
+    <module>neighborhood-quota-service</module>
+    <module>slo-synthetic-loop</module>
+    <module>slo-compliance-report</module>
+    <module>client-bundle-provisioner</module>
+    <module>connector-workflow</module>
+    <module>upgrade-compatibility-check</module>
+    <module>clusterlink-smoke-test</module>
+  </modules>
+</project>

@@ -1,0 +1,5 @@
+# WO-24 — Approved connector classes (extend per platform policy).
+allowedConnectorClasses:
+  - io.confluent.connect.jdbc.JdbcSourceConnector
+  - io.confluent.connect.jdbc.JdbcSinkConnector
+  - org.apache.kafka.connect.file.FileStreamSourceConnector

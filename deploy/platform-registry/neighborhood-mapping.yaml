@@ -1,0 +1,10 @@
+# WO-17 / WO-18 / WO-26 — Platform registry (example row).
+neighborhoods:
+  - name: example-lob
+    dataCenter: dc1-virginia
+    sizingProfile: MEDIUM
+    lobs:
+      - ExampleLOB
+    status: ONBOARDING
+    provisionedAt: null
+    sloTier: tier2

@@ -1,0 +1,14 @@
+{
+  "title": "Cluster Capacity Utilisation",
+  "uid": "kees2-capacity",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "gauge",
+      "title": "CPU vs quota (stub)",
+      "gridPos": {"h": 6, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "sum(rate(container_cpu_usage_seconds_total[5m]))"}]
+    }
+  ]
+}

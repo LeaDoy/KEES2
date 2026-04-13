@@ -1,0 +1,4 @@
+# WO-9 / WO-20 — Partition ceiling and running total (update currentPartitionTotal via pipeline).
+maxPartitions: 2000
+currentPartitionTotal: 0
+sizingProfile: MEDIUM

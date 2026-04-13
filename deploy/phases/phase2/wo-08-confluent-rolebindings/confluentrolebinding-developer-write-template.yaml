@@ -1,0 +1,11 @@
+apiVersion: platform.confluent.io/v1beta2
+kind: ConfluentRolebinding
+metadata:
+  name: kees2-developer-write-template
+spec:
+  role: DeveloperWrite
+  principal:
+    type: serviceAccount
+    name: REPLACE_PRODUCER_SA
+  kafkaRestClassRef:
+    name: mds-oidc

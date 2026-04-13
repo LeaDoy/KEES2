@@ -1,0 +1,22 @@
+# WO-15 — SloSyntheticLoop every 5 minutes (replace image; set NEIGHBORHOOD_NAME).
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kees2-slo-synthetic-loop
+  namespace: confluent
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 300
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: slo-loop
+              image: REPLACE_IMAGE/kees2-slo-synthetic-loop:1.0.0
+              env:
+                - name: NEIGHBORHOOD_NAME
+                  value: REPLACE_NEIGHBORHOOD
+                - name: KAFKA_BOOTSTRAP_SERVERS
+                  value: REPLACE_BOOTSTRAP

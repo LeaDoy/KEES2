@@ -29,12 +29,18 @@ jobs:
             echo "kustomize build $d"
             kustomize build "$d" > /dev/null
           done
+      - name: Build phase overlays
+        run: |
+          set -e
+          for d in deploy/phases/phase2 deploy/phases/phase3 deploy/phases/phase4 deploy/phases/phase5; do
+            echo "kustomize build $d"
+            kustomize build "$d" > /dev/null
+          done
+      - name: WO-3 — No floating latest in deploy/gitops
+        run: bash scripts/validate-helm-no-latest.sh
 
-  kafka-ocp-provisioner:
+  maven:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: kafka-ocp-provisioner
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -42,35 +48,5 @@ jobs:
           distribution: "temurin"
           java-version: "17"
           cache: "maven"
-      - name: Package
-        run: mvn -B package -DskipTests
-
-  service-account-provisioner:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: service-account-provisioner
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: "temurin"
-          java-version: "17"
-          cache: "maven"
-      - name: Package
-        run: mvn -B package -DskipTests
-
-  secret-rotation-job:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: secret-rotation-job
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: "temurin"
-          java-version: "17"
-          cache: "maven"
-      - name: Package
-        run: mvn -B package -DskipTests
+      - name: Package all modules
+        run: mvn -B package -DskipTests -f pom.xml

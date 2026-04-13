@@ -1,0 +1,39 @@
+# WO-3 — Outline for sequential Confluent deploy + promotion gates (extend with real runners).
+name: confluent-deploy-pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "dev | staging | prod"
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+      datacenter:
+        description: "dc1-virginia | dc2-texas"
+        required: true
+        type: string
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: KES readiness stub
+        run: echo "WO-3 — integrate KES readiness record check before deploy"
+      - name: Helm no-latest
+        run: bash scripts/validate-helm-no-latest.sh
+
+  render:
+    needs: preflight
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: imranismail/setup-kustomize@v2
+      - name: Build target overlay
+        run: |
+          echo "Map inputs.datacenter + inputs.environment to deploy/master-cluster/... path"
+          kustomize build deploy/base > /dev/null

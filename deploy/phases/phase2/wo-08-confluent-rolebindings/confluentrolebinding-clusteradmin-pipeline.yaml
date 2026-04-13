@@ -1,0 +1,11 @@
+apiVersion: platform.confluent.io/v1beta2
+kind: ConfluentRolebinding
+metadata:
+  name: kees2-clusteradmin-pipeline
+spec:
+  role: ClusterAdmin
+  principal:
+    type: serviceAccount
+    name: svc-pipeline-runner
+  kafkaRestClassRef:
+    name: mds-oidc

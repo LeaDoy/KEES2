@@ -1,0 +1,16 @@
+# WO-19 — Medium profile ResourceQuota for namespace example-lob-dc1 (adjust name per pipeline).
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: kees2-neighborhood-medium
+  labels:
+    platform.kees2.io/managed: "true"
+spec:
+  hard:
+    requests.cpu: "12"
+    limits.cpu: "12"
+    requests.memory: 48Gi
+    limits.memory: 48Gi
+    requests.storage: 1500Gi
+    persistentvolumeclaims: "15"
+    pods: "30"

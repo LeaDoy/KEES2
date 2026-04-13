@@ -1,0 +1,24 @@
+# WO-16 — Tier consumer lag (requires slo_tier labels from relabel config).
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kees2-slo-consumer-lag
+  namespace: openshift-monitoring
+spec:
+  groups:
+    - name: kees2-slo-lag
+      rules:
+        - alert: SloTier1ConsumerLagBreach
+          expr: kafka_consumergroup_lag{slo_tier="tier1"} > 10000
+          for: 3m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Tier1 consumer lag breach"
+        - alert: SloTier2ConsumerLagBreach
+          expr: kafka_consumergroup_lag{slo_tier="tier2"} > 50000
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Tier2 consumer lag breach"
